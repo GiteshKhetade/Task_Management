@@ -1,0 +1,114 @@
+<odoo>
+        <data>
+<!-- form view  -->
+    <record id="view_companyinfo_form" model="ir.ui.view">
+        <field name="name">school.companyinfo.form</field>
+        <field name="model">school.companyinfo</field>
+        <field name="arch" type="xml">
+            <form string="Company Info">
+
+            <sheet>
+            <h1>Company Information </h1>
+                <group> 
+                    <field name="name"/>
+                    <field name="cemail" />
+                    <field name="cphone"/>
+                    <field name="caddress"/>   
+                    <field name="start_date" />
+                    <field name="end_date" />             
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- tree view -->
+    <record id="view_companyinfo_tree" model="ir.ui.view">
+        <field name="name">school.companyinfo.tree</field>
+        <field name="model">school.companyinfo</field>
+        <field name="arch" type="xml">
+            <tree sample ="1" string="Company Info">  
+                    <field name="name"/>
+                    <field name="cemail" />
+                    <field name="cphone"/>
+                    <field name="caddress"/>   
+                    <field name="start_date" />
+                    <field name="end_date" />
+            </tree>
+        </field>
+    </record>
+
+<!-- Kanban View -->
+
+    <record id="view_companyinfo_kanban" model="ir.ui.view">
+            <field name="name">school.companyinfo.kanban</field>
+            <field name="model">school.companyinfo</field>
+            <field name="arch" type="xml">  
+                    <kanban sample ="1" string="Company View">
+                    <field name="name"/>
+                    <field name="cemail" />
+                    <field name="cphone"/>
+                    <field name="caddress"/> 
+                    <field name="start_date"/>
+                    <field name="end_date" /> 
+                        <templates>
+                            <t t-name="kanban-box">
+                               <div t-attf-class="oe_kanban_global_click">
+                               <ul>
+                               <li>
+                                    Company Name: <field name="name"/>
+                               </li>
+                               <li>
+                                    Company Gender: <field name="cemail"/>
+                               </li>
+                               <li>
+                                    Company Mobile No: <field name="cphone"/>
+                               </li>
+                                <li>
+                                    Company Email Address: <field name="caddress"/>
+                               </li>
+                                <li>
+                                    Start Date: <field name="start_date"/>
+                               </li>
+                                <li>
+                                    End Date <field name="end_date"/>
+                               </li>
+                               </ul>
+                               </div> 
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+            </record>
+
+<record id="view_school_companyinfo" model="ir.ui.view">
+    <field name="name">Comapny Info</field>
+    <field name="model">school.companyinfo</field>
+    <field name="arch" type="xml">
+        <calendar string="Company Calendar" date_start="start_date" date_stop="end_date">
+            <!-- Define fields to display on the calendar event -->
+                    <field name="name"/>
+                    <field name="cemail" />
+                    <field name="cphone"/>
+                    <field name="caddress"/>   
+                    <field name="start_date" />
+                    <field name="end_date" />
+        </calendar>
+    </field>
+</record>
+
+            <!-- action view -->
+      <record id="action_school_companyinfo" model="ir.actions.act_window">
+            <field name="name">Company Info</field>
+            <field name="res_model">school.companyinfo</field>
+            <field name="view_mode">kanban,form,tree,calendar</field>
+            <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Company Info
+                </p>
+            </field>
+        </record>
+     </data>
+
+</odoo>
+

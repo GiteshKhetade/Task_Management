@@ -1,0 +1,78 @@
+<odoo>
+	<data>		
+        <record id="view_course_form" model="ir.ui.view">
+			<field name="name">school.course.form</field>
+			<field name="model">school.course</field>
+			<field name="arch" type="xml">
+				<form string="Course ">
+                <sheet>
+					<group>
+						<field name="name" />
+						<field name="sem" />
+						<field name="department" />
+						<!-- <field name="clteacher_id" /> -->
+                        <field name="teach_ids" />
+					</group>
+                </sheet>
+				</form>
+			</field>
+		</record>
+
+<!-- tree view -->
+    <record id="view_course_tree" model="ir.ui.view">
+        <field name="name">school.course.tree</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+            <tree sample ="1" string="Course">
+
+                        <field name="name" />
+						<field name="sem" />
+						<field name="department" />
+						<!-- <field name="clteacher_id" /> -->
+                        <field name="teach_ids" />
+
+            </tree>
+        </field>
+    </record>
+
+<!-- search view -->
+
+        <record id="view_course_search" model="ir.ui.view">
+            <field name="name">school.course.search</field>
+            <field name="model">school.course</field>
+            <field name="arch" type="xml">
+                <search string="Course">
+
+                        <field name="name" />
+						<field name="sem" />
+						<field name="department" />
+						<!-- <field name="clteacher_id" /> -->
+
+                    <!-- <separator/>
+                    <filter name="name" string="Student Name" domain="[('gender', '=', 'male')]"/>
+                    <filter name="female" string="Female" domain="[('gender', '=', 'female')]"/> -->
+                    <group expand="1" string="Name">
+                        <filter name="course_name " string="Course Name" context="{'group_by':'name'}"/>
+						<filter name="semester_name" string="Semester" context="{'group_by':'sem'}"/>
+						<filter name="department_name " string="Date" context="{'group_by':'department'}"/>
+                        <!-- <filter name="class_teacher" string="Gender" context="{'group_by':'clteacher_id'}"/> -->
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+<!-- action view -->
+		<record id="action_school_course" model="ir.actions.act_window">
+			<field name="name">School Course</field>
+			<field name="res_model">school.course</field>
+			<field name="view_mode">tree,form</field>
+             <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Course
+                </p>
+			</field>
+		</record>
+	</data>
+</odoo>
+

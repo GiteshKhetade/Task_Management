@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+
+<menuitem 
+    id="menu_school_root"
+    name ="School"
+/>
+
+<menuitem id="menu_school_teacher"
+          name="Teacher"
+          parent="school.menu_school_root"
+          action="action_school_teacher"
+          sequence="1"/>
+<menuitem
+    id="menu_school_student"
+    name="Student"
+    parent="school.menu_school_root"
+    action="action_school_student"
+    sequence="2"/>
+
+<menuitem
+    id="menu_school_details"
+    name="Details"
+    parent="school.menu_school_root"
+    action="action_school_details"
+    sequence="3"/>
+
+<menuitem
+    id="menu_school_details"
+    name="Meeting"
+    parent="school.menu_school_root" 
+    sequence="4"/>
+
+<menuitem
+    id="menu1_school_details"
+    name=" Meeting"
+    parent="school.menu_school_details"
+    action="action_school_meet"
+    sequence="1"/>
+<menuitem
+    id="menu2_school_details"
+    name="Create Meeting"
+    parent="school.menu_school_details"
+    action="action_create_meeting"
+    sequence="2"/>
+
+<menuitem
+    id="menu_school_employeeinfo"
+    name="Employee Info"
+    action="action_school_employeeinfo"
+    parent="sale.menu_sale_config"
+    sequence="6"/>
+
+<menuitem
+    id="menu_school_companyinfo"
+    name="Comapny Info"
+    action="action_school_companyinfo"
+    parent="school.menu_school_root"
+    sequence="7"/>
+
+<menuitem
+    id="menu_school_course"
+    name="Course"
+    action="action_school_course"
+    parent="school.menu_school_root"
+    sequence="8"/>
+
+    </data>
+</odoo>
+
+
+
+
+

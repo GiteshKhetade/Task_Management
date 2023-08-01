@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+<!-- form view  -->
+        <record id="view_teacher_form" model="ir.ui.view">
+            <field name="name">school.teacher.form</field>
+            <field name="model">school.teacher</field>
+            <field name="arch" type="xml">
+                <form string="teacher">
+                <sheet> <h1>Teacher Registration</h1>
+                  <field name="image" widget="image" class ="oe_avatar"></field>
+                <div class ="oe_title"/>
+                <h3> <field name="sequence"/> </h3>
+
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="mobile_no"/>
+                        <field name="email_address"/>
+                        <field name="address"/>
+                        <field name="city"/>
+                        
+                    </group>
+
+              
+                            <group>
+                        <field name="qualification"/>
+                        <field name="specailization"/>
+                        <field name="designation"/>
+                        <field name="experience"/>
+                        <!-- <field name="course_ids" /> -->
+                        <field name="course_id" />
+
+                </group>
+                </group>
+                </sheet>
+            <div class="oe_chatter">
+            <field name="message_follower_ids"></field>
+            <field name="activity_ids"></field>
+            <field name="message_ids"></field>
+            </div>
+            
+                </form>
+            </field>
+        </record>
+
+<!-- tree view -->
+        <record id="view_teacher_tree" model="ir.ui.view">
+            <field name="name">school.teacher.tree</field>
+            <field name="model">school.teacher</field>
+            <field name="arch" type="xml">
+                <tree string="teacher" multi_edit="1">
+                    <field name="sequence"/> 
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="mobile_no"/>
+                    <field name="email_address"/>
+                    <field name="address"/>
+                    <field name="city"/>
+                    <field name="qualification" optional="show"/>
+                    <field name="designation" optional="hide"/>
+                    <!-- <field name="course_ids" /> -->
+                    <field name="course_id" />
+
+                </tree>
+            </field>
+        </record>
+
+<!-- action view -->
+        <record id="action_school_teacher" model="ir.actions.act_window">
+            <field name="name">Teacher</field>
+            <field name="res_model">school.teacher</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Teacher
+                </p>
+            </field>
+        </record>
+
+        <!-- Squence view -->
+        <record id="teacher_seq_school" model="ir.sequence">
+            <field name="name">School Teacher</field>
+            <field name="code">school.teacher</field>
+            <field name="prefix">ST</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

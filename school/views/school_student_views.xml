@@ -1,0 +1,194 @@
+<odoo>
+        <data>
+<!-- form view  -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <header>
+                    <button id="button_draft" name="action_draft" string="Draft" class="btn-primary" status = "cancel" type="object"/>
+                    <button id="button_conform" name="action_conform" string="Confirm" class="btn-primary" status = "draft" type="object"
+                    confirm = "DO YOU WANT TO CONFORM? "/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" class="btn-primary" status ="draft,done,conform"
+                    confirm = "DO YOU WANT TO CANCEL? " type="object"/>
+                    <button id="button_create_meeting" name="%(action_create_meeting)d" string="Create Meeting" class="btn-primary" type="action"/>
+                    
+
+                    <field name="status" widget="statusbar"/>
+
+
+                </header>
+
+            <sheet>
+            <h1>Student Registration</h1>
+            <group> 
+                <group> 
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="mobile_no"/>
+                    <field name="email_address"/>
+                    <field name="address"/>
+                    <field name="city"/>
+                </group>
+            <group>
+                    <field name="class_teacher_id" widget="many2many_tags" />           
+                    <field name="standard"/>
+                    <field name="grade"/>
+                    <field name="activities"/>
+                    <field name="achivements"/>
+                    <field name="course_id" />
+                   
+            </group>
+            </group>
+                     <notebook>
+               
+                         <page name="stud_medicine" string="Student Medicine Record">
+                                <field name="stud_med_info_ids"/>
+                         </page>   
+                     </notebook>
+
+            </sheet>
+            </form>
+        </field>
+    </record>
+<!-- tree view -->
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree sample ="1" string="student" decoration-danger="status=='cancel'" decoration-success = "status == 'conform'"
+            decoration-warning = "status == 'draft'">  
+            <header>
+            <button name="action_done" string="Mark as Done" class="btn-primary" type="object"/>
+            </header>
+                
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="mobile_no"/>
+                <field name="email_address"/>
+                <field name="address"/>
+                <field name="city"/>
+                <field name="class_teacher_id"/>
+                <field name="standard"/>
+                <field name="grade"/>
+                <field name="activities"/>
+                <field name="achivements"/>
+                <field name="course_id" />
+                <field name="status"/>
+
+
+
+
+            </tree>
+        </field>
+    </record>
+
+<!-- search view -->
+
+        <record id="view_student_search" model="ir.ui.view">
+            <field name="name">school.student.search</field>
+            <field name="model">school.student</field>
+            <field name="arch" type="xml">
+                <search string="Student">
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <separator/>
+                    <filter name="male" string="Male" domain="[('gender', '=', 'male')]"/>
+                    <filter name="female" string="Female" domain="[('gender', '=', 'female')]"/>
+                    <group expand="0" string="Name">
+                        <filter name="name " string="Name" context="{'group_by':'name'}"/>
+                        <filter name="gender " string="Gender" context="{'group_by':'gender'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+<!-- Kanban View -->
+
+    <record id="view_student_kanban" model="ir.ui.view">
+            <field name="name">school.student.kanban</field>
+            <field name="model">school.student</field>
+            <field name="arch" type="xml">  
+                    <kanban sample ="1">
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="mobile_no"/>
+                    <field name="email_address"/>
+                    <field name="address"/>
+                    <field name="city"/>
+                    <field name="class_teacher_id"/>
+                    <field name="standard"/>
+                    <field name="grade"/>
+                    <field name="activities"/>
+                    <field name="achivements"/>
+                        <templates>
+                            <t t-name="kanban-box">
+                               <div t-attf-class="oe_kanban_global_click">
+                               <ul>
+                               <li>
+                                    Name: <field name="name"/>
+                               </li>
+                               <li>
+                                    Gender: <field name="gender"/>
+                               </li>
+                               <li>
+                                    Mobile No: <field name="mobile_no"/>
+                               </li>
+                                <li>
+                                    Email Address: <field name="email_address"/>
+                               </li>
+                                <li>
+                                    City: <field name="city"/>
+                               </li>
+                                <li>
+                                    Standard: <field name="class_teacher_id"/>
+                               </li>
+                                <li>
+                                    Standard: <field name="standard"/>
+                               </li>
+                                <li>
+                                    Grade: <field name="grade"/>
+                               </li>
+                                <li>
+                                    Activities: <field name="activities"/>
+                               </li>
+                                <li>
+                                    Achivements: <field name="achivements"/>
+                               </li>
+                               </ul>
+                               </div> 
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+            </record>        
+
+<!-- action view -->
+      <record id="action_school_student" model="ir.actions.act_window">
+            <field name="name">Student</field>
+            <field name="res_model">school.student</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Student
+                </p>
+            </field>
+        </record>
+
+
+
+
+        <!-- Squence view -->
+        <record id="student_seq_school" model="ir.sequence">
+            <field name="name">School Student</field>
+            <field name="code">school.student</field>
+            <field name="prefix">SS</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        </data>
+</odoo>
+
+

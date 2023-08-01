@@ -1,0 +1,37 @@
+<odoo>
+	<data>		
+        <record id="school_meeting_wizard_form" model="ir.ui.view">
+			<field name="name">school.meeting.wizard.form</field>
+			<field name="model">school.meeting.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Meeting ">
+					<group>
+						<field name="date_meet" />
+						<field name="name_id" />
+						<field name="teacher_id" />
+						<field name="note" />
+					</group>
+
+                    <!-- <group>
+                    <field name="name" />
+                    </group> -->
+
+					<footer>
+						<button name="action_create_meeting" string="Create Meeting" type="object" class="btn-primary"/>
+						<button string="Cancel" class="btn-secondary" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="action_create_meeting" model="ir.actions.act_window">
+			<field name="name">School Meeting</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">school.meeting.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="school_meeting_wizard_form"></field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

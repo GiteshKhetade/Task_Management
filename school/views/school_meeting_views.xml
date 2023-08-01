@@ -1,0 +1,76 @@
+<odoo>
+	<data>		
+        <record id="view_meet_form" model="ir.ui.view">
+			<field name="name">school.meet.form</field>
+			<field name="model">school.meet</field>
+			<field name="arch" type="xml">
+				<form string="meet ">
+                <sheet>
+					<group>
+						<field name="date_meet" />
+						<field name="name_stud_id" />
+						<field name="teacher_stud_id" />
+						<field name="notee" />
+                         <field name="meeting_count"/>
+					</group>
+                </sheet>
+				</form>
+			</field>
+		</record>
+
+<!-- tree view -->
+    <record id="view_meet_tree" model="ir.ui.view">
+        <field name="name">school.meet.tree</field>
+        <field name="model">school.meet</field>
+        <field name="arch" type="xml">
+            <tree sample ="1" string="meet">
+
+ 						<field name="date_meet" />
+						<field name="name_stud_id" />
+						<field name="teacher_stud_id" />
+						<field name="notee" />
+                         <field name="meeting_count"/>
+                        
+            </tree>
+        </field>
+    </record>
+
+<!-- search view -->
+
+        <record id="view_meet_search" model="ir.ui.view">
+            <field name="name">school.meet.search</field>
+            <field name="model">school.meet</field>
+            <field name="arch" type="xml">
+                <search string="meet">
+                    <field name="name_stud_id"/>
+                    <field name="teacher_stud_id"/>
+					<field name='date_meet'/>
+
+                    <separator/>
+                    <!-- <filter name="name" string="Student Name" domain="[('gender', '=', 'male')]"/>
+                    <filter name="female" string="Female" domain="[('gender', '=', 'female')]"/> -->
+                    <group expand="1" string="Name">
+                        <filter name="name_stud_id " string="Student Name" context="{'group_by':'name_stud_id'}"/>
+						<filter name="teacher_stud_id " string="Teacher Name" context="{'group_by':'teacher_stud_id'}"/>
+						<filter name="name_stdate_meetud_id " string="Date" context="{'group_by':'date_meet'}"/>
+                        <!-- <filter name="gender " string="Gender" context="{'group_by':'gender'}"/> -->
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+<!-- action view -->
+		<record id="action_school_meet" model="ir.actions.act_window">
+			<field name="name">School meet</field>
+			<field name="res_model">school.meet</field>
+			<field name="view_mode">tree,form</field>
+             <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Meet
+                </p>
+			</field>
+		</record>
+	</data>
+</odoo>
+

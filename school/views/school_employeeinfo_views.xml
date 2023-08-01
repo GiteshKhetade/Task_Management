@@ -1,0 +1,109 @@
+<odoo>
+        <data>
+<!-- form view  -->
+    <record id="view_employeeinfo_form" model="ir.ui.view">
+        <field name="name">school.employeeinfo.form</field>
+        <field name="model">school.employeeinfo</field>
+        <field name="arch" type="xml">
+            <form string="Employeeinfo">
+
+            <sheet>
+            <h1>Employee Information </h1>
+                <group> 
+                    <field name="name"/>
+                    <field name="gender" />
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+<!-- tree view -->
+    <record id="view_employeeinfo_tree" model="ir.ui.view">
+        <field name="name">school.employeeinfo.tree</field>
+        <field name="model">school.employeeinfo</field>
+        <field name="arch" type="xml">
+            <tree sample ="1" string="Employee Info">  
+            
+                    <field name="name"/>
+                    <field name="gender" />
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- search view -->
+
+        <record id="view_employeeinfo_search" model="ir.ui.view">
+            <field name="name">school.employeeinfo.search</field>
+            <field name="model">school.employeeinfo</field>
+            <field name="arch" type="xml">
+                <search string="employeeinfo">
+                    <field name="name"/>
+                    <separator/>
+                    <filter name="male" string="Male" domain="[('gender', '=', 'male')]"/>
+                    <filter name="female" string="Female" domain="[('gender', '=', 'female')]"/>
+                    <group expand="0" string="Name">
+                        <filter name="name " string="Name" context="{'group_by':'name'}"/>
+                        <filter name="gender " string="Gender" context="{'group_by':'gender'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+<!-- Kanban View -->
+
+    <record id="view_employeeinfo_kanban" model="ir.ui.view">
+            <field name="name">school.employeeinfo.kanban</field>
+            <field name="model">school.employeeinfo</field>
+            <field name="arch" type="xml">  
+                    <kanban sample ="1">
+                    <field name="name"/>
+                    <field name="gender" />
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+                        <templates>
+                            <t t-name="kanban-box">
+                               <div t-attf-class="oe_kanban_global_click">
+                               <ul>
+                               <li>
+                                    Name: <field name="name"/>
+                               </li>
+                               <li>
+                                    Gender: <field name="gender"/>
+                               </li>
+                               <li>
+                                    Mobile No: <field name="phone"/>
+                               </li>
+                                <li>
+                                    Email Address: <field name="email"/>
+                               </li>
+                                <li>
+                                    Address: <field name="address"/>
+                               </li>
+                               </ul>
+                               </div> 
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+            </record>        
+
+<!-- action view -->
+      <record id="action_school_employeeinfo" model="ir.actions.act_window">
+            <field name="name">employeeinfo</field>
+            <field name="res_model">school.employeeinfo</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="help" type="xml">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Employee Info
+                </p>
+            </field>
+        </record>
+</data>
+</odoo>
